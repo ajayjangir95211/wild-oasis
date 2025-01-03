@@ -3,7 +3,7 @@ import { useUploadFile } from "../../../hooks";
 import { useAddNewCabin, useUpdateCabin } from "../hooks";
 import { Form } from "../../../components/form-elements/Form";
 import { Input } from "../../../components/form-elements/Input";
-import { Textarea } from "../../../components/form-elements/TextArea";
+import { TextArea } from "../../../components/form-elements/TextArea";
 import { PrimaryBtn, SecondaryBtn, Spinner } from "../../../components/UI";
 import { FormProvider, useForm } from "react-hook-form";
 import { getFileURL } from "../../../services";
@@ -118,7 +118,7 @@ export function CabinForm({ edit = false, cabin = {}, closeForm }) {
               "Discount cannot exceed the price",
           }}
         />
-        <Textarea
+        <TextArea
           name="description"
           validation={{ required: "This field is required" }}
         />
