@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDeleteFile, useUploadFile } from "../../../hooks";
+import { useUploadFile } from "../../../hooks";
 import { useAddNewCabin, useUpdateCabin } from "../hooks";
 import { Form } from "../../../components/form-elements/Form";
 import { Input } from "../../../components/form-elements/Input";

@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { formatLabel } from "../../utils/formatLabel";
 
-export function Textarea({ name, validation = {}, disabled = false }) {
+export function TextArea({ name, validation = {}, disabled = false }) {
   const {
     register,
     formState: { errors },
