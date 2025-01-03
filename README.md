@@ -10,7 +10,7 @@ Wild Oasis is a hotel management web application designed to streamline cabin an
 
 ## Live Demo
 
-Experience the live demo of Wild Oasis here: [Wild Oasis Live Demo](https://wild-oasis-doja5z1z4-ajayjangir95211s-projects.vercel.app/)
+Experience the live demo of Wild Oasis here: [Wild Oasis Live Demo](https://wild-oasis-henna.vercel.app/)
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your improvements.
