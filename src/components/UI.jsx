@@ -69,7 +69,7 @@ export const Select = ({
 );
 
 export const Spinner = () => (
-  <div className="absolute top-0 z-10 flex size-full items-center justify-center bg-light bg-opacity-75 backdrop-blur-sm dark:bg-dark dark:bg-opacity-75">
+  <div className="absolute left-0 top-0 z-10 flex size-full items-center justify-center bg-light bg-opacity-75 backdrop-blur-sm dark:bg-dark dark:bg-opacity-75">
     <div className="loader bg-green-600 dark:bg-green-400"></div>
   </div>
 );

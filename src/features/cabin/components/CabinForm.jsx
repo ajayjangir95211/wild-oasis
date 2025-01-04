@@ -58,6 +58,7 @@ export function CabinForm({ edit = false, cabin = {}, closeForm }) {
           path,
         ).data.publicUrl;
       } catch (error) {
+        console.error(error);
         return;
       }
     }
