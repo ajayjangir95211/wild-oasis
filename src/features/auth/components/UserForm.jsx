@@ -1,5 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useAuthContext, useDeleteFile, useSupabase, useUploadFile } from "../../../hooks";
+import {
+  useAuthContext,
+  useDeleteFile,
+  useSupabase,
+  useUploadFile,
+} from "../../../hooks";
 import { FormProvider, useForm } from "react-hook-form";
 import { useUpdateUser } from "../hooks";
 import { Form } from "../../../components/form-elements/Form";
