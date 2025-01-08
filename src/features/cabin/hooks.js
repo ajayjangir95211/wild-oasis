@@ -6,10 +6,9 @@ import {
   getCabins,
   updateCabin,
 } from "./services";
-import { useSupabase } from "../../contexts/SupabaseContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useDeleteFile } from "../../hooks";
+import { useDeleteFile, useSupabase } from "../../hooks";
 
 export function useGetCabins() {
   const supabase = useSupabase();

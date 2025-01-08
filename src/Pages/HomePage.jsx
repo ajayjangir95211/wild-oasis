@@ -14,12 +14,12 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useThemeContext } from "../contexts/ThemeContext";
 import { priceFormatter } from "../utils/priceFormatter";
 import { useState } from "react";
 import { HiOutlineBriefcase, HiOutlineCash } from "react-icons/hi";
-import { HiOutlineBuildingOffice, HiOutlineCheckBadge } from "react-icons/hi2";
+import { HiOutlineBuildingOffice } from "react-icons/hi2";
 import { useGetCabins } from "../features/cabin/hooks";
+import { useThemeContext } from "../hooks";
 
 const DEFAULT_DATE_RANGE = {
   start: new Date(2024, 10, 1),
@@ -29,8 +29,18 @@ export function HomePage() {
   const [dateRange, setDateRange] = useState(DEFAULT_DATE_RANGE);
   const { theme } = useThemeContext();
 
-  const { isPendingBookings, data: bookings, errorBookings } = useGetBookings();
-  const { isPendingCabins, data: cabins, errorCabins } = useGetCabins();
+  const {
+    isPendingBookings,
+    data: bookings,
+    errorBookings,
+    refetch: refetechBookings,
+  } = useGetBookings();
+  const {
+    isPendingCabins,
+    data: cabins,
+    errorCabins,
+    refetch: refetechCabins,
+  } = useGetCabins();
 
   let totalBookings = 0;
   let totalSales = 0;
@@ -109,7 +119,14 @@ export function HomePage() {
   });
 
   if (isPendingBookings || isPendingCabins) return <Spinner />;
-  if (errorBookings || errorCabins) return <ErrorAlert />;
+  if (errorBookings || errorCabins)
+    return (
+      <ErrorAlert
+        onClick={
+          (errorBookings && refetechBookings) || (errorCabins && refetechCabins)
+        }
+      />
+    );
 
   return (
     <div className="flex flex-col gap-4">

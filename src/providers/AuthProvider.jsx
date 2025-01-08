@@ -1,13 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useSupabase } from "./SupabaseContext";
+import { useEffect, useState } from "react";
 import { ErrorAlert, Spinner } from "../components/UI";
+import { AuthContext } from "../contexts";
+import { useSupabase } from "../hooks";
 
-const AuthContext = createContext({
-  isLoggedIn: false,
-  user: null,
-});
-
-export function AuthContextProvider({ children }) {
+export function AuthProvider({ children }) {
   const supabase = useSupabase();
   const [session, setSession] = useState(null);
 
@@ -40,5 +36,3 @@ export function AuthContextProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-
-export const useAuthContext = () => useContext(AuthContext);

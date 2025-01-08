@@ -1,6 +1,11 @@
 import { useGetCabins } from "../../cabin/hooks";
 import { useAddNewBooking, useUpdateBooking } from "../hooks";
-import { PrimaryBtn, SecondaryBtn, Spinner } from "../../../components/UI";
+import {
+  ErrorAlert,
+  PrimaryBtn,
+  SecondaryBtn,
+  Spinner,
+} from "../../../components/UI";
 import { Form } from "../../../components/form-elements/Form";
 import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -8,7 +13,7 @@ import { Input } from "../../../components/form-elements/Input";
 import { Select } from "../../../components/form-elements/Select";
 
 export function BookingForm({ edit = false, booking = {}, closeForm }) {
-  const { data: cabins, isPending, error } = useGetCabins();
+  const { data: cabins, isPending, error, refetch } = useGetCabins();
 
   const {
     name,
@@ -50,7 +55,7 @@ export function BookingForm({ edit = false, booking = {}, closeForm }) {
   const cabin_id = watch("cabin");
   useEffect(() => {
     if (watch("total_guests")) trigger("total_guests");
-  }, [cabin_id]);
+  }, [cabin_id, trigger, watch]);
 
   async function submitForm(data) {
     const cabin = cabins.find((cabin) => cabin.id === Number(data.cabin));
@@ -74,7 +79,7 @@ export function BookingForm({ edit = false, booking = {}, closeForm }) {
   }
 
   if (isPending || isUpdating || isAdding) return <Spinner />;
-  if (error) return <Error error={error} />;
+  if (error) return <ErrorAlert onClick={refetch} />;
 
   return (
     <Form onSubmit={handleSubmit((data) => submitForm(data))}>

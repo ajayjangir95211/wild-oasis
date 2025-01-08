@@ -15,8 +15,7 @@ import { useLogOut } from "./features/auth/hooks";
 import { useState } from "react";
 import { RoundBtn, Spinner } from "./components/UI";
 import { Logo } from "./components/Logo";
-import { useThemeContext } from "./contexts/ThemeContext";
-import { useAuthContext } from "./contexts/AuthContext";
+import { useAuthContext, useThemeContext } from "./hooks";
 
 const DEFAULT_AVATAR = "/default-user.jpg";
 

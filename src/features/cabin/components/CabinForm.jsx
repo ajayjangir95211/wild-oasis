@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useUploadFile } from "../../../hooks";
+import { useSupabase, useUploadFile } from "../../../hooks";
 import { useAddNewCabin, useUpdateCabin } from "../hooks";
 import { Form } from "../../../components/form-elements/Form";
 import { Input } from "../../../components/form-elements/Input";
@@ -7,7 +7,6 @@ import { TextArea } from "../../../components/form-elements/TextArea";
 import { PrimaryBtn, SecondaryBtn, Spinner } from "../../../components/UI";
 import { FormProvider, useForm } from "react-hook-form";
 import { getFileURL } from "../../../services";
-import { useSupabase } from "../../../contexts/SupabaseContext";
 
 export function CabinForm({ edit = false, cabin = {}, closeForm }) {
   const supabase = useSupabase();

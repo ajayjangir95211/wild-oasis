@@ -24,7 +24,7 @@ export function BookingsPage() {
   const sort = searchParams.get("sort") || "created_at";
   const order = searchParams.get("order") || "desc";
 
-  const { isPending, data: bookings, error } = useGetBookings();
+  const { isPending, data: bookings, error, refetch } = useGetBookings();
 
   const sortedBookings = bookings?.slice(0).sort((a, b) => {
     if (["status", "name"].includes(sort))
@@ -32,7 +32,7 @@ export function BookingsPage() {
         ? a[sort].localeCompare(b[sort])
         : b[sort].localeCompare(a[sort]);
 
-    if ([, "created_at"].includes(sort))
+    if (["created_at"].includes(sort))
       return order === "asc"
         ? new Date(a[sort]) - new Date(b[sort])
         : new Date(b[sort]) - new Date(a[sort]);
@@ -44,7 +44,7 @@ export function BookingsPage() {
   });
 
   if (isPending) return <Spinner />;
-  if (error) return <ErrorAlert error={error} />;
+  if (error) return <ErrorAlert onClick={refetch} />;
 
   return (
     <div className="flex flex-col gap-4">

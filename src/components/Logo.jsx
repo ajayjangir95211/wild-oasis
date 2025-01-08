@@ -1,4 +1,4 @@
-import { useThemeContext } from "../contexts/ThemeContext";
+import { useThemeContext } from "../hooks";
 
 export function Logo() {
   const { theme } = useThemeContext();

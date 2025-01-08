@@ -13,12 +13,15 @@ export function PasswordForm() {
   const { isPending: isUpdatingPassword, mutate: updatePassword } =
     useUpdateUser();
 
+  const password = watch("password");
+  const confirmPassword = watch("confirm_password");
+
   useEffect(() => {
-    if (watch("password") && watch("confirm_password")) {
+    if (password && confirmPassword) {
       trigger("password");
       trigger("confirm_password");
     }
-  }, [watch("password"), watch("confirm_password")]);
+  }, [password, confirmPassword, watch, trigger]);
 
   if (isUpdatingPassword) return <Spinner />;
 
@@ -35,9 +38,9 @@ export function PasswordForm() {
           validation={{
             required: "This field is required",
             validate: () =>
-              !watch("password") ||
-              !watch("confirm_password") ||
-              watch("password") === watch("confirm_password") ||
+              !password ||
+              !confirmPassword ||
+              password === confirmPassword ||
               "Passwords do not match",
           }}
         />
@@ -47,9 +50,9 @@ export function PasswordForm() {
           validation={{
             required: "This field is required",
             validate: () =>
-              !watch("password") ||
-              !watch("confirm_password") ||
-              watch("password") === watch("confirm_password") ||
+              !password ||
+              !confirmPassword ||
+              password === confirmPassword ||
               "Passwords do not match",
           }}
         />

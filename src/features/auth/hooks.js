@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { logIn, logOut, updateUser } from "./services";
-import { useSupabase } from "../../contexts/SupabaseContext";
+import { useSupabase } from "../../hooks";
 
 export function useLogIn() {
   const supabase = useSupabase();

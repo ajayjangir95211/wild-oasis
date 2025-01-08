@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useDeleteFile, useUploadFile } from "../../../hooks";
+import { useAuthContext, useDeleteFile, useSupabase, useUploadFile } from "../../../hooks";
 import { FormProvider, useForm } from "react-hook-form";
 import { useUpdateUser } from "../hooks";
 import { Form } from "../../../components/form-elements/Form";
 import { Input } from "../../../components/form-elements/Input";
 import { SecondaryBtn, PrimaryBtn, Spinner } from "../../../components/UI";
 import { getFileURL } from "../../../services";
-import { useSupabase } from "../../../contexts/SupabaseContext";
-import { useAuthContext } from "../../../contexts/AuthContext";
 
 export function UserForm() {
   const supabase = useSupabase();
@@ -51,11 +49,12 @@ export function UserForm() {
           uploadRes.path,
         ).data.publicUrl;
 
-        if (user?.user_metadata.avatar_url)
+        if (user?.user_metadata?.avatar_url) {
           deleteFile({
             bucket: "avatars",
-            name: (user?.user_metadata.avatar_url).split("/").at(-1),
+            name: user.user_metadata.avatar_url.split("/").at(-1),
           });
+        }
       }
 
       updateUser({ data: updatedUser });

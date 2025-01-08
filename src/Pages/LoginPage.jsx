@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { LoginForm } from "../features/auth/components/LoginForm";
 import { Logo } from "../components/Logo";
-import { useAuthContext } from "../contexts/AuthContext";
+import { useAuthContext } from "../hooks";
 
 export function LoginPage() {
   const { isLoggedIn } = useAuthContext();

@@ -4,13 +4,10 @@ import "./index.css";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "./Pages/HomePage";
 import { LoginPage } from "./Pages/LoginPage";
 import { ErrorPage } from "./Pages/ErrorPage";
-import { SupabaseProvider } from "./contexts/SupabaseContext";
-import { AuthContextProvider } from "./contexts/AuthContext";
 import { AppLayout } from "./AppLayout";
 import { UserPage } from "./Pages/UserPage";
 import { CabinsPage } from "./Pages/CabinsPage";
@@ -18,9 +15,12 @@ import { Cabin } from "./features/cabin/components/Cabin";
 import { BookingsPage } from "./Pages/BookingsPage";
 import { Booking } from "./features/booking/components/Booking";
 import { ErrorBoundary } from "react-error-boundary";
-import { ErrorAlert, FallbackUI } from "./components/UI";
+import { FallbackUI } from "./components/UI";
 import { toast } from "react-toastify";
 import { Notification } from "./components/Notification";
+import { ThemeProvider } from "./providers/ThemeProvider";
+import { SupabaseProvider } from "./providers/SupabaseProvider";
+import { AuthProvider } from "./providers/AuthProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,7 +40,7 @@ createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <SupabaseProvider>
-            <AuthContextProvider>
+            <AuthProvider>
               <BrowserRouter>
                 <Routes>
                   <Route element={<Notification />}>
@@ -60,7 +60,7 @@ createRoot(document.getElementById("root")).render(
                   </Route>
                 </Routes>
               </BrowserRouter>
-            </AuthContextProvider>
+            </AuthProvider>
           </SupabaseProvider>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />

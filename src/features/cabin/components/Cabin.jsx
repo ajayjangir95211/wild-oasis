@@ -12,13 +12,18 @@ export function Cabin() {
   const { id } = useParams();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const { isPending, data: cabin, error } = useGetCabin({ id: Number(id) });
+  const {
+    isPending,
+    data: cabin,
+    error,
+    refetch,
+  } = useGetCabin({ id: Number(id) });
 
   const { mutate: deleteFile } = useDeleteFile();
   const { isPending: isDeleting, mutate: deleteCabin } = useDeleteCabin();
 
   if (isPending || isDeleting) return <Spinner />;
-  if (error) return <ErrorAlert error={error} />;
+  if (error) return <ErrorAlert onClick={refetch} />;
 
   return (
     <div>

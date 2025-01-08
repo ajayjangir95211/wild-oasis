@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSupabase } from "../../contexts/SupabaseContext";
 import {
   addNewBooking,
   deleteBooking,
@@ -9,6 +8,7 @@ import {
 } from "./services";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useSupabase } from "../../hooks";
 
 export function useGetBookings() {
   const supabase = useSupabase();

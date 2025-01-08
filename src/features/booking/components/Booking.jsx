@@ -21,13 +21,18 @@ export function Booking() {
   const { id } = useParams();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const { isPending, data: booking, error } = useGetBooking({ id: Number(id) });
+  const {
+    isPending,
+    data: booking,
+    error,
+    refetch,
+  } = useGetBooking({ id: Number(id) });
 
   const { isPending: isDeleting, mutate: deleteBooking } = useDeleteBooking();
   const { isPending: isUpdating, mutate: updateBooking } = useUpdateBooking();
 
   if (isPending || isDeleting || isUpdating) return <Spinner />;
-  if (error) return <ErrorAlert error={error} />;
+  if (error) return <ErrorAlert onClick={refetch} />;
 
   return (
     <div>
