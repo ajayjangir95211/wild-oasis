@@ -20,7 +20,7 @@ export function Input({
         {formatLabel(name)}
       </label>
       <input
-        className={`rounded-full bg-gray-300 p-1 dark:bg-gray-700 ${disabled && "bg-gray-500 dark:bg-gray-500"}`}
+        className={`rounded-full bg-gray-300 p-2 dark:bg-gray-700 ${disabled && "bg-gray-500 dark:bg-gray-500"}`}
         id={name}
         type={type}
         disabled={disabled}
